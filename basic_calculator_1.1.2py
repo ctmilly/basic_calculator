@@ -41,18 +41,18 @@ if operation == 10:
     numsx = int(input("How many x values do you want to input?: "))
     for i in range(numsx):
         xg.append(float(input("Enter your x values: ")))
-        if xg == ():
+        if not xg:
             na_entry = float(input("Invalid entry, try again:"))
     numsy = int(input("How many y values do you want to input?: "))
     for i in range(numsy):
         yg.append(float(input("Enter your y values: ")))
     plt.plot(xg, yg)
-    plt.show() 
-    sys.exit()
+    plt.show()
+    #sys.exit()
 #chose integer or fraction input
 print('''
     5. integer/decimal
-    6. fraction'''  
+    6. fraction'''
 )
 
 number_type_choice = int(input("Enter '5' for integer/decimal input or '6' for fractional input: "))
@@ -62,7 +62,7 @@ while number_type_choice not in [5, 6]:
 
 if number_type_choice == 5:
     x = float(input("Enter first number: "))
-    y = float(input("Enter second number: ")) 
+    y = float(input("Enter second number: "))
     if operation == 1:
         result = add(x, y)
         print(result)
@@ -74,6 +74,7 @@ if number_type_choice == 5:
         print(result)
     elif operation == 4:
         if y == 0:
+            ZeroDivisionError
             print("Error, cannot divide by 0.")
             y = float(input("Enter new denominator: "))
             result = divide(x , y)
@@ -81,22 +82,28 @@ if number_type_choice == 5:
         elif y not in ['0']:
             result = divide(x, y)
             print (result)
-        
+
 # for irrational values
 if number_type_choice == 6:
     #first fraction
     from fractions import Fraction
-    print('''       
+    print('''
     For fraction one
           ''')
-    x = int(input("Enter numerator: "))
-    y = int(input("Enter denominator: "))
-    f = Fraction(x,y)
+    x1 = int(input("Enter numerator: "))
+    y1 = int(input("Enter denominator: "))
+    if y1 == 0:
+        ZeroDivisionError
+        y1 = int(input("Invalid entry, input new denominator: "))
+    f = Fraction(x1,y1)
     #second fraction
     print('''
     For fraction two''')
-    y1 = int(input("Enter numerator: "))
-    x1 = int(input("Enter denominator: "))
+    x1 = int(input("Enter numerator: "))
+    y1 = int(input("Enter denominator: "))
+    if y1 == 0:
+        ZeroDivisionError
+        y1 = int(input("Invalid entry, input new denominator: "))
     g = Fraction(x1,y1)
     if operation == 1:
         result = add(f,g)
@@ -110,4 +117,3 @@ if number_type_choice == 6:
     elif operation == 4:
         result = divide(f,g)
         print(result)
-
